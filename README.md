@@ -1,1 +1,1 @@
-advent of code rust template
+advent of code solutions
