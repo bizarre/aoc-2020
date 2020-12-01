@@ -26,19 +26,20 @@ pub fn solve_part1_for_loop(expenses: &Vec<Expense>) -> u32 {
 
 #[aoc(day1, part1, recursion)]
 pub fn solve_part1_recursion(expenses: &Vec<Expense>) -> u32 {
-  fn recurse(expenses: &mut Vec<Expense>) -> u32 {
-    let expense = expenses.pop().ok_or(0).unwrap();
+  fn recurse(expenses: &Vec<Expense>, skip: usize) -> u32 {
+    let expense = expenses[skip];
 
-    for other in expenses.iter() {
-      if *other + expense == GOAL {
-        return *other * expense
+    for i in skip..expenses.len() - 1 {
+      let other = expenses[i];
+      if other + expense == GOAL {
+        return other * expense
       }
     }
 
-    recurse(expenses)
+    recurse(expenses, skip + 1)
   }
 
-  recurse(&mut expenses.to_owned())
+  recurse(expenses, 0)
 }
 
 #[aoc(day1, part1, binary_search)]
