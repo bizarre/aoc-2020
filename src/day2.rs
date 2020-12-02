@@ -1,5 +1,4 @@
 use aoc_runner_derive::{aoc_generator, aoc};
-use itertools::Itertools;
 
 #[derive(Debug)]
 pub struct Policy {
@@ -114,7 +113,6 @@ pub fn solve_part2(items: &Vec<Item>) -> u32 {
     let max = item.policy.max;
     let min = item.policy.min;
     let password = &item.password;
-    let length = (password.len() as u8);
     let target = item.policy.character;
     let chars: Vec<char> = password.chars().into_iter().collect();
     let contains_first = chars.len() > (max - 1) as usize && chars[(max - 1) as usize] == target;
