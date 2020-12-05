@@ -69,12 +69,12 @@ pub fn input_generator(input: &str) -> Vec<Passport> {
 
 
 #[aoc(day4, part1)]
-pub fn solve_part1(passports: &Vec<Passport>) -> u32 {
-  passports.iter().filter(|passport| passport.is_valid()).count() as u32
+pub fn solve_part1(passports: &Vec<Passport>) -> usize {
+  passports.iter().filter(|passport| passport.is_valid()).count()
 }
 
 #[aoc(day4, part2)]
-pub fn solve_part2(passports: &Vec<Passport>) -> u32 {
+pub fn solve_part2(passports: &Vec<Passport>) -> usize {
   fn filter(passport: &Passport) -> std::io::Result<bool> {
     let mut to_return = 1;
 
@@ -125,5 +125,5 @@ pub fn solve_part2(passports: &Vec<Passport>) -> u32 {
     Ok(to_return != 0)
   }
 
-  passports.iter().filter(|passport| passport.is_valid() && filter(*passport).unwrap()).count() as u32
+  passports.iter().filter(|passport| passport.is_valid() && filter(*passport).unwrap()).count()
 }
