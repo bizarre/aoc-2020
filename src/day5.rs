@@ -52,13 +52,11 @@ fn parse(input: &Vec<String>) -> Vec<BoardingPass> {
 
     let mut max: u8 = 127;
     let mut min = 0;
-    let mut found = false;
-    let mut previous = 'X';
+    let mut previous = 'L';
     while chars.len() > 0 {
       let mut current = chars[0];
 
-      if !found && (current == 'R' || current == 'L') {
-        found = true;
+      if (previous == 'F' || previous == 'B') && (current == 'R' || current == 'L') {
         match previous {
           'F' => {
             row = min
@@ -71,6 +69,7 @@ fn parse(input: &Vec<String>) -> Vec<BoardingPass> {
 
         min = 0;
         max = 7;
+        previous = 'L';
         
         continue;
       }
