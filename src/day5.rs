@@ -17,6 +17,32 @@ pub fn solve_part1(input: &Vec<String>) -> BoardingPass {
   passes[0]
 }
 
+#[aoc(day5, part1, binary)]
+pub fn solve_part1_binary(input: &Vec<String>) -> BoardingPass {
+  let mut highest: BoardingPass = 0;
+
+  for line in input {
+    let chars: Vec<char> = line.chars().collect();
+    let mut row: String = chars[0..7].iter().collect();
+    let mut column: String = chars[7..].iter().collect();
+
+    row = str::replace(&row, "F", "0");
+    row = str::replace(&row, "B", "1");
+    column = str::replace(&column, "L", "0");
+    column = str::replace(&column, "R", "0");
+
+    let row: u16 = u16::from_str_radix(&row, 2).unwrap_or(0);
+    let column: u16 = u16::from_str_radix(&column, 2).unwrap_or(0);
+    let pass: BoardingPass = row * 8 + column;
+
+    if pass > highest {
+      highest = pass;
+    }
+  }
+
+  highest
+}
+
 #[aoc(day5, part2)]
 pub fn solve_part2(input: &Vec<String>) -> BoardingPass {
   let mut passes = parse(input);
