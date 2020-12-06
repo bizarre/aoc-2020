@@ -29,7 +29,7 @@ pub fn solve_part1_binary(input: &Vec<String>) -> BoardingPass {
     row = str::replace(&row, "F", "0");
     row = str::replace(&row, "B", "1");
     column = str::replace(&column, "L", "0");
-    column = str::replace(&column, "R", "0");
+    column = str::replace(&column, "R", "1");
 
     let row: u16 = u16::from_str_radix(&row, 2).unwrap_or(0);
     let column: u16 = u16::from_str_radix(&column, 2).unwrap_or(0);
